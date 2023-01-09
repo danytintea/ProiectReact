@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import Groups from "./Groups";
 import Tickets from "./Tickets";
 import PersonalData from "./PersonalData";
+import Contact from "./Contact";
 
 export default [
     {
@@ -29,6 +30,10 @@ export default [
     {
         path: "/personalData",
         element: <PersonalData />,
+    },
+    {
+        path: "/contact",
+        element: <Contact />,
     },
     {
         path: "*",

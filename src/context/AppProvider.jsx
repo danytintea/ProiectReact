@@ -70,6 +70,16 @@ export default function AppProvider({ children }) {
                     navigate("/home");
                 };
                 break;
+            case '3':
+                {
+
+                };
+                break;
+            case '4':
+                {
+                    navigate("/contact");
+                };
+                break;
         }
     }
 
@@ -127,11 +137,11 @@ export default function AppProvider({ children }) {
         };
     }
 
-    const addTicket=()=>{ 
-        dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets+1 });
+    const addTicket = () => {
+        dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets + 1 });
     }
 
-    const selectSeats=()=>{
+    const selectSeats = () => {
         dispatch({ type: 'UPDATE_STEP', payload: 2 });
         navigate("/personalData");
     }

@@ -22,7 +22,6 @@ export default function FormData() {
 
     return (
         <div className="loginBg">
-            {console.log(mail)}
             <Form className="loginForm" form={form} onFinish={() => { }}>
                 <Typography.Title>Introdu datele</Typography.Title>
                 <Form.Item rules={[{
