@@ -1,0 +1,58 @@
+import { Button, Form, Input, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { useAppContext } from "../../context";
+import "./formData.css";
+
+export default function FormData() {
+
+    const [form] = Form.useForm();
+    const {logged, user, nr_tickets}=useAppContext();
+
+    const [name, setName]=useState(logged?user.name:"");
+    const [mail, setMail]=useState(logged?user.username:"");
+    const [phone, setPhone]=useState(logged?user.phone:"");
+
+    useEffect(() => {
+        form.setFieldsValue({
+            name: name,
+            username: mail,
+            phone: phone,
+        })
+    }, []);
+
+    return (
+        <div className="loginBg">
+            {console.log(mail)}
+            <Form className="loginForm" form={form} onFinish={() => { }}>
+                <Typography.Title>Introdu datele</Typography.Title>
+                <Form.Item rules={[{
+                    required: true,
+                    message: "Introdu un nume",
+                }]} label='Nume' name={'name'}>
+                    <Input placeholder="Introdu numele" value={name} onChange={(e)=>setName(e.target.value)}/>
+                </Form.Item>
+                <Form.Item rules={[{
+                    required: true,
+                    type: "email",
+                    message: "Introdu un email valid",
+                }]} label='Email' name={'username'}>
+                    <Input placeholder="Introdu email-ul" value={mail} onChange={(e)=>setMail(e.target.value)}/>
+                </Form.Item>
+                <Form.Item
+                    name="phone"
+                    label="Numar de telofon"
+                    rules={[{
+                         required: true,
+                          message: 'Introdu numarul de telofon' 
+                        }]}
+                >
+                    <Input placeholder="Introdu numarul de telefon" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+                </Form.Item>
+                <Typography.Title level={3}>Vei primi {nr_tickets} puncte</Typography.Title>
+                <Button type="primary" htmlType="submit" block>
+                    Finalizeaza comanda
+                </Button>
+            </Form>
+        </div>
+    )
+};

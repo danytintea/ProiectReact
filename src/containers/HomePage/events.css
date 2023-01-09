@@ -1,0 +1,27 @@
+.nameUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameText{
+    color: aliceblue;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 25px;
+}
+
+.headerContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../../components/images/img.jpg');
+}
+
+.headerText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration: solid;
+}
+
