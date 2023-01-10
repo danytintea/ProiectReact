@@ -1,18 +1,19 @@
 import { Button, Form, Input, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../../context";
 import "./formContact.css";
+import emailjs from '@emailjs/browser';
 
 export default function FormContact() {
 
     const [form] = Form.useForm();
-    const { logged, user } = useAppContext();
+    const { logged, user} = useAppContext();
 
     const [mail, setMail] = useState(logged ? user.username : "");
+    const [name, setName] = useState(logged ? user.name : "");
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
-
 
     useEffect(() => {
         form.setFieldsValue({
@@ -20,9 +21,29 @@ export default function FormContact() {
         })
     }, []);
 
+    const ref = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            'service_kzego8i',
+            'template_2griqom',
+            ref.current,
+            'mWCapowrS6-ueuAz2'
+        )
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
+            e.target.reset();
+    };
+
     return (
         <div className="loginBg">
-            <Form className="loginFormContact" form={form} onFinish={(value) => {console.log(value)}}>
+            <Form className="loginFormContact" form={form} ref={ref} onFinish={sendEmail}>
                 <Typography.Title>Contact</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
@@ -30,6 +51,12 @@ export default function FormContact() {
                     message: "Introdu un email valid",
                 }]} label='Email' name={'username'}>
                     <Input placeholder="Introdu email-ul" value={mail} onChange={(e) => setMail(e.target.value)} />
+                </Form.Item>
+                <Form.Item rules={[{
+                    required: true,
+                    message: "Introdu numele",
+                }]} label='Nume' name={'name'}>
+                    <Input placeholder="Introdu numele" value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Item>
                 <Form.Item rules={[{
                     required: true,
