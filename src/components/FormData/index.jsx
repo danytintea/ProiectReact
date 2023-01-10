@@ -8,21 +8,22 @@ export default function FormData() {
     const [form] = Form.useForm();
     const {logged, user, nr_tickets}=useAppContext();
 
-    const [name, setName]=useState(logged?user.name:"");
-    const [mail, setMail]=useState(logged?user.username:"");
-    const [phone, setPhone]=useState(logged?user.phone:"");
+    const [name, setName]=useState("");
+    const [mail, setMail]=useState("");
+    const [phone, setPhone]=useState("");
 
     useEffect(() => {
         form.setFieldsValue({
-            name: name,
-            username: mail,
-            phone: phone,
+            name: logged?user.name:"",
+            username: logged?user.username:"",
+            phone: logged?user.phone:"",
         })
-    }, []);
+    }, [user]);
 
     return (
         <div className="loginBg">
-            <Form className="loginForm" form={form} onFinish={() => { }}>
+            
+            <Form className="loginForm" form={form} onFinish={(value) => { console.log(value)}}>
                 <Typography.Title>Introdu datele</Typography.Title>
                 <Form.Item rules={[{
                     required: true,

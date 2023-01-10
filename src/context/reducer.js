@@ -1,13 +1,5 @@
 export const initialState = {
-    user: {
-        username: "Utilizator",
-        password: "",
-        name: "Nu esti conectat",
-        card_nr: null,
-        points: null,
-        admin: false,
-        phone:null
-    },
+    user: {},
     logged: false,
     events: [],
     event: {},
@@ -23,7 +15,7 @@ const reducer = (state, action) => {
         case "UPDATE_USER":
             return { ...state, user: action.payload };
         case "SET_LOGGED":
-            return { ...state, logged: true };
+            return { ...state, logged: action.payload };
         case "TEST":
             return { ...state, test: action.payload };
         case "SET_EVENTS":

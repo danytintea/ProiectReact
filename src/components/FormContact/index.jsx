@@ -10,16 +10,17 @@ export default function FormContact() {
     const [form] = Form.useForm();
     const { logged, user} = useAppContext();
 
-    const [mail, setMail] = useState(logged ? user.username : "");
-    const [name, setName] = useState(logged ? user.name : "");
+    const [mail, setMail] = useState("");
+    const [name, setName] = useState("");
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
 
     useEffect(() => {
         form.setFieldsValue({
-            username: mail,
+            username: logged ? user.username : "",
+            name: logged ? user.name : "",
         })
-    }, []);
+    }, [user]);
 
     const ref = useRef();
 
