@@ -29,8 +29,8 @@ export default function Seats({ sector }) {
                 </li>
             </ul>
 
-            {sector.seats?
-            sector.seats.map((seat) =>
+            {
+            sector.seats?.map((seat) =>
                 <div key={seat.row} className="row">
                     <label>{seat.row + 1}</label>
                     {seat.seat_nr.map((value) =>
@@ -39,7 +39,7 @@ export default function Seats({ sector }) {
                         </>
                     )}
                 </div>
-            ):<div/>}
+            )}
 
             <Typography.Title level={2} className="headerText">Ai ales {nr_tickets} bilete ({price} lei)</Typography.Title>
             <Button type="primary" onClick={selectSeats} size="large">
