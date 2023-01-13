@@ -72,7 +72,7 @@ export default function FormContact() {
                     <TextArea placeholder="Descrie problema" rows={7} size="large" value={body} onChange={(e) => setBody(e.target.value)}/>
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
                     Trimite mesajul
                 </Button>
             </Form>

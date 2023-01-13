@@ -49,7 +49,7 @@ export default function FormData() {
                     <Input placeholder="Introdu numarul de telefon" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                 </Form.Item>
                 <Typography.Title level={3}>Vei primi {nr_tickets} puncte</Typography.Title>
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
                     Finalizeaza comanda
                 </Button>
             </Form>

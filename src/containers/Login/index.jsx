@@ -28,11 +28,11 @@ export default function Login() {
                 }]} label='Password' name={'password'}>
                     <Input.Password placeholder="Introdu parola" />
                 </Form.Item>
-                <Button type="primary" htmlType="submit" block>
+                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
                     Login
                 </Button>
                 <Divider style={{ borderColor: "black" }}>sau</Divider>
-                <Button type="primary" onClick={guest} block>
+                <Button type="primary" onClick={guest} block style={{ background: "red"}}>
                     Continua fără conectare
                 </Button>
             </Form>

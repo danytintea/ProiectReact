@@ -42,7 +42,7 @@ export default function Seats({ sector }) {
             )}
 
             <Typography.Title level={2} className="headerText">Ai ales {nr_tickets} bilete ({price} lei)</Typography.Title>
-            <Button type="primary" onClick={selectSeats} size="large">
+            <Button type="primary" onClick={selectSeats} size="large" style={{ background: "red"}}>
                 Cumpara
             </Button>
         </div>

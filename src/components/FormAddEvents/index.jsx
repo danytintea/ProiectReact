@@ -70,8 +70,8 @@ export default function FormAddEvents() {
                     </Upload>
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit" block>
-                    Trimite mesajul
+                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
+                    Adauga evenimentul
                 </Button>
             </Form>
         </div>
