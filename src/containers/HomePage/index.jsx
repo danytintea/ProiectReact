@@ -57,7 +57,7 @@ export default function HomePage() {
                                             <label>{event.date}</label>
                                             <br></br>
                                             <label>{event.price} lei</label>
-                                            <Button type="primary" onClick={() => { selectEvent(event) }} block>
+                                            <Button type="primary" onClick={() => { selectEvent(event) }} block style={{ background: "red"}}>
                                                 Cumpara
                                             </Button>
                                         </Card>

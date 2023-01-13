@@ -12,7 +12,8 @@ export default function PersonalData(){
         token: { colorBgContainer },
     } = theme.useToken();
 
-    return ( <Layout hasSider>
+    return ( 
+    <Layout hasSider>
         <MenuPage />
         <Layout
             className="site-layout"

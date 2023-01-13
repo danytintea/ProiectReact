@@ -74,12 +74,7 @@ export default function MenuPage() {
                     logged ? {
                         key: '5',
                         icon: <AppstoreAddOutlined />,
-                        label: 'Adauga eveniment',
-                    } : null,
-                    logged ? {
-                        key: '6',
-                        icon: <DeleteOutlined />,
-                        label: 'Sterge eveniment',
+                        label: 'Gestionare evenimente',
                     } : null,
                 ]} />
         </Sider>

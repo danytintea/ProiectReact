@@ -5,6 +5,7 @@ import Groups from "./Groups";
 import Tickets from "./Tickets";
 import PersonalData from "./PersonalData";
 import Contact from "./Contact";
+import ManageEvents from "./ManageEvents";
 
 export default [
     {
@@ -34,6 +35,10 @@ export default [
     {
         path: "/contact",
         element: <Contact />,
+    },
+    {
+        path: "/manageEvents",
+        element: <ManageEvents />,
     },
     {
         path: "*",

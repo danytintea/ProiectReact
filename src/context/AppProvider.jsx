@@ -122,6 +122,11 @@ export default function AppProvider({ children }) {
                     navigate("/contact");
                 };
                 break;
+            case '5'://gestionare evenimente
+                {
+                    navigate("/manageEvents");
+                };
+                break;
         }
     }
 
