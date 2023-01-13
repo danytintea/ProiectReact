@@ -1,9 +1,10 @@
 const API_URL = 'http://localhost:3001';
+import axios from "axios";
 
 const groupsData = async () => {
-    const response = await fetch(`${API_URL}/groups`);
+    const response = await axios.get(`${API_URL}/groups`);
 
-    const groups = await response.json();
+    const groups = response.data;
 
     
     if(groups)
@@ -13,11 +14,9 @@ const groupsData = async () => {
 }
 
 const getCurrentGroup = async (name) => {
-    const response = await fetch(`${API_URL}/groups`);
+    const response = await axios.get(`${API_URL}/groups`);
 
-    const groups = await response.json();
-
-    const group = groups.find((group) => group.name == name);
+    const group = response.data.find((group) => group.name == name);
 
     if (group) {
         return group;

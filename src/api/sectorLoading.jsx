@@ -1,11 +1,10 @@
 const API_URL = 'http://localhost:3001';
+import axios from "axios";
 
 const sectorLoading = async (event_id, group_id) => {
-    const response = await fetch(`${API_URL}/sectors`);
+    const response = await axios.get(`${API_URL}/sectors`);
 
-    const seactors = await response.json();
-
-    const sector = seactors.find((sector) => sector.event_id == event_id && sector.group_id == group_id);
+    const sector = response.data.find((sector) => sector.event_id == event_id && sector.group_id == group_id);
 
     if (sector) {
         return sector;

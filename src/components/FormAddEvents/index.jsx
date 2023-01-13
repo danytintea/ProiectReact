@@ -9,70 +9,65 @@ export default function FormAddEvents() {
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
     const [date, setDate] = useState();
-
-
-    const normFile = (e) => {
-        console.log('Upload event:', e);
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e?.fileList;
-    };
-
-    const config = {
-        rules: [
-          {
-            type: 'object',
-            required: true,
-            message: 'Please select time!',
-          },
-        ],
-      };
-
+    
+    const [userInfo, setuserInfo] = useState({
+        file:[],
+        filepreview:null,
+       });
+    
+      const handleInputChange = (event) => {
+        setuserInfo({
+          ...userInfo,
+          file:event.target.files[0],
+          filepreview:URL.createObjectURL(event.target.files[0]),
+        });
+    
+      }
 
     return (
         <div className="formAddBg">
-            <Form className="addEventForm" onFinish={(value) => {console.log(value.date) }}>
+            <Form className="addEventForm" onFinish={(value) => { console.log(value) }}>
                 <Typography.Title level={2} className="headerText">Adauga un nou eveniment</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
                     message: "Introdu denumirea evenimentului",
-                }]} label='Name' name={'name'}>
+                }]} label='Denumire' name={'name'}>
                     <Input placeholder="Introdu denumirea evenimentului" value={name} onChange={(e) => setName(e.target.value)} />
                 </Form.Item>
-                
+
                 <Form.Item rules={[{
                     required: true,
                     message: "Introdu descrierea evenimentului",
-                }]} label='Description' name={'description'}>
+                }]} label='Descriere' name={'description'}>
                     <Input placeholder="Introdu descrierea evenimentului" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item rules={[{
                     required: true,
                     message: "Introdu pretul unui bilet",
-                }]} label='Price' name={'price'}>
+                }]} label='Pret' name={'price'}>
                     <Input placeholder="Introdu pretul unui bilet" value={price} onChange={(e) => setPrice(e.target.value)} />
                 </Form.Item>
 
-                <Form.Item name="date" label="DatePicker" {...config}>
-                    <DatePicker value={date} onChange={(_,dateString)=>setDate(dateString)}/>
+                <Form.Item rules={[{
+                    required: true,
+                    message: "Introdu data",
+                }]} name="date" label="Data">                
+                    <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item
-                    name="upload"
+                    name="photo"
                     label="Incarca imaginea"
-                    valuePropName="fileList"
-                    getValueFromEvent={normFile}
                 >
-                    <Upload name="logo" action="/upload.do" listType="picture">
-                        <Button icon={<UploadOutlined />}>Click to upload</Button>
-                    </Upload>
+                    <Input type="file" name="photo" onChange={handleInputChange} />
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
+                <Button type="primary" htmlType="submit" block style={{ background: "red" }}>
                     Adauga evenimentul
                 </Button>
+
+                <img className="previewimg"  src={userInfo.filepreview} alt="UploadImage" />
             </Form>
         </div>
     )

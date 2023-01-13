@@ -1,9 +1,10 @@
 const API_URL = 'http://localhost:3001';
+import axios from "axios";
 
 const eventsData = async () => {
-    const response = await fetch(`${API_URL}/events`);
+    const response = await axios.get(`${API_URL}/events`);
 
-    const events = await response.json();
+    const events = response.data;
 
     
     if(events)
@@ -13,9 +14,9 @@ const eventsData = async () => {
 }
 
 const getCurrentEvent = async (key) => {
-    const response = await fetch(`${API_URL}/events`);
+    const response = await axios.get(`${API_URL}/events`);
 
-    const events = await response.json();
+    const events = response.data;
 
     const event = events.find((event) => event.key == key);
 

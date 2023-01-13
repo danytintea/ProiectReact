@@ -1,11 +1,10 @@
 const API_URL = 'http://localhost:3001';
+import axios from "axios";
 
 const login = async ({ username, password }) => {
-    const response = await fetch(`${API_URL}/users`);
+    const response = await axios.get(`${API_URL}/users`);
 
-    const users = await response.json();
-
-    const user = users.find((user) => user.password == password && user.username == username);
+    const user = response.data.find((user) => user.password == password && user.username == username);
 
     if (user) {
         return user;
@@ -15,11 +14,9 @@ const login = async ({ username, password }) => {
 }
 
 const getCurrentUser = async (username) => {
-    const response = await fetch(`${API_URL}/users`);
+    const response = await axios.get(`${API_URL}/users`);
 
-    const users = await response.json();
-
-    const user = users.find((user) => user.username == username);
+    const user = response.data.find((user) => user.username == username);
 
     if (user) {
         return user;
