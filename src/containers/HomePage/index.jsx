@@ -5,7 +5,7 @@ import React from 'react';
 import FooterPage from '../../components/FooterPage';
 import MenuPage from '../../components/MenuPage';
 import { useAppContext } from '../../context';
-import "./events.css"
+import "./style.css"
 
 export default function HomePage() {
 

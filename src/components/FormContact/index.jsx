@@ -2,7 +2,7 @@ import { Button, Form, Input, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../../context";
-import "./formContact.css";
+import "./style.css";
 import emailjs from '@emailjs/browser';
 
 export default function FormContact() {

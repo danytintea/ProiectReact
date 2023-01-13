@@ -7,7 +7,7 @@ import MenuPage from "../../components/MenuPage";
 import Step from "../../components/Step";
 import TableGroups from "../../components/TableGroups";
 import { useAppContext } from "../../context";
-import "./groups.css"
+import "./style.css"
 
 export default function Groups() {
 

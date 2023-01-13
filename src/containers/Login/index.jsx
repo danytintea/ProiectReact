@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Divider, Form, Input, Typography } from 'antd';
 import { useAppContext } from "../../context";
-import "./Login.css";
+import "./style.css";
 
 export default function Login() {
 

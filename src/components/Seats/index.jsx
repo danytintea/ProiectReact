@@ -1,7 +1,7 @@
 import { Button, Typography } from "antd";
 import React, { useState } from "react";
 import { useAppContext } from "../../context";
-import "./seats.css"
+import "./style.css"
 
 export default function Seats({ sector }) {
 

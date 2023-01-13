@@ -1,7 +1,7 @@
 import { Button, Form, Input, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../context";
-import "./formData.css";
+import "./style.css";
 
 export default function FormData() {
 
