@@ -10,7 +10,7 @@ import { useAppContext } from "../../context";
 export default function ManageEvents() {
 
 
-    const { events } = useAppContext();
+    const { events, deleteEventFunction } = useAppContext();
 
     const {
         token: { colorBgContainer },
@@ -47,21 +47,21 @@ export default function ManageEvents() {
                             {
                                 events.map((event) =>
                                     <Card
-                                        key={event.key}
+                                        key={event.id}
                                         hoverable
                                         style={{
                                             width: 300,
                                         }}
                                         cover={<img alt="example" src={event.image} />}
                                     >
-                                        <Meta key={event.key} title={event.name} description={event.description} />
+                                        <Meta key={event.id} title={event.name} description={event.description} />
                                         <label>{event.date}</label>
                                         <br></br>
                                         <label>{event.price} lei</label>
                                         <Button type="primary" onClick={() => { }} block style={{ background: "black", borderColor: "red" }}>
                                             Modifica
                                         </Button>
-                                        <Button type="primary" onClick={() => { }} block style={{ marginTop: 24, background: "red", borderColor: "black" }}>
+                                        <Button type="primary" onClick={()=>deleteEventFunction(event.id)} block style={{ marginTop: 24, background: "red", borderColor: "black" }}>
                                             Sterge
                                         </Button>
                                     </Card>

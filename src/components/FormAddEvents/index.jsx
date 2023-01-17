@@ -1,32 +1,22 @@
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, DatePicker, Form, Input, Typography, Upload } from "antd";
+
+import { Button, DatePicker, Form, Input, Typography } from "antd";
 import React, { useState } from "react";
+import { useAppContext } from "../../context";
 import "./style.css"
 
 export default function FormAddEvents() {
+
+    const {finishCreateEvent}=useAppContext();
 
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
     const [date, setDate] = useState();
-    
-    const [userInfo, setuserInfo] = useState({
-        file:[],
-        filepreview:null,
-       });
-    
-      const handleInputChange = (event) => {
-        setuserInfo({
-          ...userInfo,
-          file:event.target.files[0],
-          filepreview:URL.createObjectURL(event.target.files[0]),
-        });
-    
-      }
+    const [photo, setPhoto] = useState();
 
     return (
         <div className="formAddBg">
-            <Form className="addEventForm" onFinish={(value) => { console.log(value) }}>
+            <Form className="addEventForm" onFinish={finishCreateEvent}>
                 <Typography.Title level={2} className="headerText">Adauga un nou eveniment</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
@@ -57,17 +47,21 @@ export default function FormAddEvents() {
                 </Form.Item>
 
                 <Form.Item
-                    name="photo"
+                rules={[{
+                    required: true,
+                    message: "Introdu link-ul pentru imagine",
+                }]}
+                    name="image"
                     label="Incarca imaginea"
                 >
-                    <Input type="file" name="photo" onChange={handleInputChange} />
+                    {/* <Input type="file" name="photo"  onChange={handleInputChange}/> */}
+                    <Input placeholder="Introdu link-ul pentru imagine" value={photo} onChange={(e) => setPhoto(e.target.value)} />
                 </Form.Item>
 
                 <Button type="primary" htmlType="submit" block style={{ background: "red" }}>
                     Adauga evenimentul
                 </Button>
 
-                <img className="previewimg"  src={userInfo.filepreview} alt="UploadImage" />
             </Form>
         </div>
     )

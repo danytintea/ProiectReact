@@ -7,7 +7,7 @@ export default function Login() {
 
     const {
         finishLogin,
-        guest,
+        advanceAsGuest,
     } = useAppContext();
 
 
@@ -32,7 +32,7 @@ export default function Login() {
                     Login
                 </Button>
                 <Divider style={{ borderColor: "black" }}>sau</Divider>
-                <Button type="primary" onClick={guest} block style={{ background: "red"}}>
+                <Button type="primary" onClick={advanceAsGuest} block style={{ background: "red"}}>
                     Continua fără conectare
                 </Button>
             </Form>

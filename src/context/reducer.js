@@ -16,8 +16,6 @@ const reducer = (state, action) => {
             return { ...state, user: action.payload };
         case "SET_LOGGED":
             return { ...state, logged: action.payload };
-        case "TEST":
-            return { ...state, test: action.payload };
         case "SET_EVENTS":
             return { ...state, events: [...action.payload] };
         case "UPDATE_EVENT":

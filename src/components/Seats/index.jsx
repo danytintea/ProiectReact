@@ -30,7 +30,7 @@ export default function Seats({ sector }) {
             </ul>
 
             {
-            sector.seats?.map((seat) =>
+            sector?.seats?.map((seat) =>
                 <div key={seat.row} className="row">
                     <label>{seat.row + 1}</label>
                     {seat.seat_nr.map((value) =>

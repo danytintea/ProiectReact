@@ -46,7 +46,7 @@ export default function HomePage() {
                                 {
                                     events.map((event) =>
                                         <Card
-                                            key={event.key}
+                                            key={event.id}
                                             hoverable
                                             style={{
                                                 width: 300,

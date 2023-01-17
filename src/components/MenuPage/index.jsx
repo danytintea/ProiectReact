@@ -4,8 +4,7 @@ import {
     InfoCircleOutlined,
     LaptopOutlined,
     SnippetsOutlined,
-    DeleteOutlined,
-    AppstoreAddOutlined
+    SettingOutlined
 } from '@ant-design/icons';
 import img from '../images/doar-dinamo-bucuresti.jpg';
 import { Layout, Menu } from "antd";
@@ -73,7 +72,7 @@ export default function MenuPage() {
 
                     logged ? {
                         key: '5',
-                        icon: <AppstoreAddOutlined />,
+                        icon: <SettingOutlined />,
                         label: 'Gestionare evenimente',
                     } : null,
                 ]} />

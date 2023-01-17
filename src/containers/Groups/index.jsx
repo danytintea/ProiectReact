@@ -46,7 +46,7 @@ export default function Groups() {
                             <Col span={12}>
                                 <div className="content">
                                     <Card
-                                        key={event.key}
+                                        key={event.id}
                                         bordered
                                         hoverable
                                         style={{
@@ -54,7 +54,7 @@ export default function Groups() {
                                         }}
                                         cover={<img alt="example" src={event.image} />}
                                     >
-                                        <Meta key={event.key} title={event.name} description={event.description} />
+                                        <Meta key={event.id} title={event.name} description={event.description} />
                                         <label>{event.date}</label>
                                         <br></br>
                                         <label>{event.price} lei</label>

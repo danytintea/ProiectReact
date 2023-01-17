@@ -4,7 +4,7 @@ import useAppReducer from "./useAppReducer";
 import login, { getCurrentUser } from "../api/authetication";
 import { message } from "antd";
 import { useNavigate } from "react-router";
-import eventsData, { getCurrentEvent } from "../api/eventsData";
+import eventsData, { createEvent, deleteEvent, getCurrentEvent } from "../api/eventsData";
 import groupsData, { getCurrentGroup } from "../api/groupsData";
 import sectorLoading from "../api/sectorLoading";
 
@@ -93,7 +93,7 @@ export default function AppProvider({ children }) {
             .catch((e) => message.error(e.message));
     }
 
-    const guest = () => {
+    const advanceAsGuest = () => {
         navigate("/home");
         dispatch({ type: 'UPDATE_USER', payload: null });
         dispatch({ type: 'SET_LOGGED', payload: false });
@@ -133,7 +133,7 @@ export default function AppProvider({ children }) {
     const selectEvent = (event) => {
         dispatch({ type: 'UPDATE_EVENT', payload: event });
         dispatch({ type: 'UPDATE_STEP', payload: 0 });
-        sessionStorage.setItem('currentKeyEvent', event.key);
+        sessionStorage.setItem('currentKeyEvent', event.id);
         navigate("/groups");
     }
 
@@ -157,7 +157,7 @@ export default function AppProvider({ children }) {
     }
 
     useEffect(() => {
-        sectorLoading(event.key, group.sector_nr)
+        sectorLoading(event.id, group.sector_nr)
             .then((sector) => {
                 dispatch({ type: 'UPDATE_SECTOR', payload: sector });
             })
@@ -194,6 +194,24 @@ export default function AppProvider({ children }) {
         navigate("/personalData");
     }
 
+    const finishCreateEvent = (value) => {
+        createEvent(value)
+            .then(() => {
+                message.success("Adaugarea a reușit!");
+                window.location.reload(false);
+            })
+            .catch(() => console.log("nu merge"));
+    }
+
+    const deleteEventFunction = (id) => {
+        deleteEvent(id)
+            .then(() => {
+                window.location.reload(false);
+                message.success("Stergerea a reușit!");
+            })
+            .catch(() => console.log("nu merge"));
+    }
+
 
     return <AppContext.Provider value={{
         user,
@@ -206,12 +224,14 @@ export default function AppProvider({ children }) {
         sector,
         nr_tickets,
         finishLogin,
-        guest,
+        advanceAsGuest,
         manuOptions,
         selectEvent,
         changeStep,
         rowSelection,
         addTicket,
         selectSeats,
+        finishCreateEvent,
+        deleteEventFunction,
     }}>{children}</AppContext.Provider>
 }

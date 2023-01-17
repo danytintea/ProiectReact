@@ -10,7 +10,7 @@ const sectorLoading = async (event_id, group_id) => {
         return sector;
     }
 
-    throw new Error(`Nu gaseste ${event_id}, ${group_id}`);
+    
 }
 
 export default sectorLoading;
