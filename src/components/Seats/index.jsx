@@ -35,7 +35,7 @@ export default function Seats({ sector }) {
                     <label>{seat.row + 1}</label>
                     {seat.seat_nr.map((value) =>
                         <>
-                            <div key={value.nr} className={value.stats_seat} onClick={addTicket}></div>
+                            <div  className={value.stats_seat} onClick={addTicket}></div>
                         </>
                     )}
                 </div>

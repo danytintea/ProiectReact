@@ -4,9 +4,10 @@ import useAppReducer from "./useAppReducer";
 import login, { getCurrentUser } from "../api/authetication";
 import { message } from "antd";
 import { useNavigate } from "react-router";
-import eventsData, { createEvent, deleteEvent, getCurrentEvent } from "../api/eventsData";
+import eventsData, { createEvent, deleteEvent, getCurrentEvent, updateEvent } from "../api/eventsData";
 import groupsData, { getCurrentGroup } from "../api/groupsData";
 import sectorLoading from "../api/sectorLoading";
+import EmptySector from "../components/EmptySector";
 
 const AppContext = createContext(initialState);
 
@@ -27,6 +28,8 @@ export default function AppProvider({ children }) {
         group,
         sector,
         nr_tickets,
+        isModalOpen,
+        idEventModal,
         dispatch } = useAppReducer();
 
 
@@ -196,11 +199,12 @@ export default function AppProvider({ children }) {
 
     const finishCreateEvent = (value) => {
         createEvent(value)
-            .then(() => {
+            .then((newEvent) => {
+
                 message.success("Adaugarea a reușit!");
                 window.location.reload(false);
             })
-            .catch(() => console.log("nu merge"));
+
     }
 
     const deleteEventFunction = (id) => {
@@ -209,7 +213,36 @@ export default function AppProvider({ children }) {
                 window.location.reload(false);
                 message.success("Stergerea a reușit!");
             })
-            .catch(() => console.log("nu merge"));
+    }
+
+    const updateEventFunction = (value) => {
+        const modifiedEvent={
+            id:idEventModal,
+            ...value
+            // name: value.name,
+            // description: value.description,
+            // price: value.price,
+            // date: value.date,
+            // image: value.image
+        }
+        updateEvent(modifiedEvent)
+            .then(() => {
+                message.success("Modificarea a reușit!");
+                dispatch({ type: 'UPDATE_MODAL_STATE', payload: false });
+                window.location.reload(false);
+            })
+    }
+
+    const openModal = () => {
+        dispatch({ type: 'UPDATE_MODAL_STATE', payload: true });
+    }
+
+    const cancelModal = () => {
+        dispatch({ type: 'UPDATE_MODAL_STATE', payload: false });
+    }
+
+    const setIdModal=(id)=>{
+        dispatch({ type: 'SET_ID_MODAL', payload: id });
     }
 
 
@@ -223,6 +256,8 @@ export default function AppProvider({ children }) {
         group,
         sector,
         nr_tickets,
+        isModalOpen,
+        idEventModal,
         finishLogin,
         advanceAsGuest,
         manuOptions,
@@ -233,5 +268,9 @@ export default function AppProvider({ children }) {
         selectSeats,
         finishCreateEvent,
         deleteEventFunction,
+        updateEventFunction,
+        openModal,
+        cancelModal,
+        setIdModal,
     }}>{children}</AppContext.Provider>
 }

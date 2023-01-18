@@ -1,7 +1,7 @@
-import { Button, Card, Layout, Space, theme, Typography } from "antd";
+import { Button, Card, Layout, Modal, Space, theme, Typography } from "antd";
 import Meta from "antd/es/card/Meta";
 import { Content, Header } from "antd/es/layout/layout";
-import React from "react";
+import React, { useState } from "react";
 import FooterPage from "../../components/FooterPage";
 import FormAddEvents from "../../components/FormAddEvents";
 import MenuPage from "../../components/MenuPage";
@@ -10,7 +10,16 @@ import { useAppContext } from "../../context";
 export default function ManageEvents() {
 
 
-    const { events, deleteEventFunction } = useAppContext();
+    const { 
+        events, 
+        deleteEventFunction, 
+        finishCreateEvent, 
+        isModalOpen, 
+        openModal,
+        cancelModal,
+        updateEventFunction,
+     } = useAppContext();
+
 
     const {
         token: { colorBgContainer },
@@ -41,8 +50,13 @@ export default function ManageEvents() {
                             background: colorBgContainer,
                         }}
                     >
-                        
-                        <FormAddEvents/>
+
+                        <FormAddEvents
+                            nameButton="Adauga evenimentul"
+                            title="Adauga un nou eveniment"
+                            finish={finishCreateEvent}
+                        />
+
                         <Space size={[20, 40]} wrap>
                             {
                                 events.map((event) =>
@@ -58,10 +72,23 @@ export default function ManageEvents() {
                                         <label>{event.date}</label>
                                         <br></br>
                                         <label>{event.price} lei</label>
-                                        <Button type="primary" onClick={() => { }} block style={{ background: "black", borderColor: "red" }}>
+                                        <Button type="primary" onClick={openModal} block style={{ background: "black", borderColor: "red" }}>
                                             Modifica
                                         </Button>
-                                        <Button type="primary" onClick={()=>deleteEventFunction(event.id)} block style={{ marginTop: 24, background: "red", borderColor: "black" }}>
+                                        <Modal open={isModalOpen} onCancel={cancelModal}
+                                            footer={[
+                                                <Button key="back" onClick={cancelModal}>
+                                                    Renunta
+                                                </Button>
+                                            ]}>
+                                            <FormAddEvents
+                                                nameButton="Modifica evenimentul"
+                                                title="Modifica evenimentul"
+                                                event={event}
+                                                finish={updateEventFunction}
+                                            />
+                                        </Modal>
+                                        <Button type="primary" onClick={() => deleteEventFunction(event.id)} block style={{ marginTop: 24, background: "red", borderColor: "black" }}>
                                             Sterge
                                         </Button>
                                     </Card>

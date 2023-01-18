@@ -8,6 +8,8 @@ export const initialState = {
     group: {},
     sector: {},
     nr_tickets: 0,
+    isModalOpen: false,
+    idEventModal: null,
 };
 
 const reducer = (state, action) => {
@@ -30,6 +32,10 @@ const reducer = (state, action) => {
             return { ...state, sector: action.payload };
         case "UPDATE_NR_TICKETS":
             return { ...state, nr_tickets: action.payload };
+        case "UPDATE_MODAL_STATE":
+            return { ...state, isModalOpen: action.payload };
+        case "SET_ID_MODAL":
+            return { ...state, idEventModal: action.payload };
         default:
             return { ...state };
     }

@@ -1,23 +1,36 @@
 
 import { Button, DatePicker, Form, Input, Typography } from "antd";
-import React, { useState } from "react";
+import { useForm } from "antd/es/form/Form";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../context";
 import "./style.css"
 
-export default function FormAddEvents() {
-
-    const {finishCreateEvent}=useAppContext();
+export default function FormAddEvents({nameButton, title, finish, event}) {
 
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
     const [date, setDate] = useState();
-    const [photo, setPhoto] = useState();
+    const [image, setImage] = useState();
+
+    const {setIdModal}=useAppContext();
+
+    const [form]=useForm();
+    useEffect(() => {
+        form.setFieldsValue({
+            name: event ? event.name : "",
+            description: event? event.description: "",
+            price: event? event.price: "",
+            date: event? event.date: "",
+            image: event? event.image: ""
+        })
+        setIdModal(event? event.id:null)
+    }, []);
 
     return (
         <div className="formAddBg">
-            <Form className="addEventForm" onFinish={finishCreateEvent}>
-                <Typography.Title level={2} className="headerText">Adauga un nou eveniment</Typography.Title>
+            <Form className="addEventForm" onFinish={finish} form={form}>
+                <Typography.Title level={2} className="headerText">{title}</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
                     message: "Introdu denumirea evenimentului",
@@ -55,11 +68,11 @@ export default function FormAddEvents() {
                     label="Incarca imaginea"
                 >
                     {/* <Input type="file" name="photo"  onChange={handleInputChange}/> */}
-                    <Input placeholder="Introdu link-ul pentru imagine" value={photo} onChange={(e) => setPhoto(e.target.value)} />
+                    <Input placeholder="Introdu link-ul pentru imagine" value={image} onChange={(e) => setImage(e.target.value)} />
                 </Form.Item>
 
                 <Button type="primary" htmlType="submit" block style={{ background: "red" }}>
-                    Adauga evenimentul
+                    {nameButton}
                 </Button>
 
             </Form>

@@ -18,7 +18,7 @@ const getCurrentEvent = async (id) => {
 
     const events = response.data;
 
-    const event = events.find((event) => event.key == id);
+    const event = events.find((event) => event.id == id);
 
     if (event) {
         return event;
@@ -39,8 +39,19 @@ const createEvent = async (event) => {
 const deleteEvent = async (id) => {
     const deleted = await axios.delete(`${API_URL}/events/${id}`);
     return deleted;
-  };
+};
 
-export { createEvent, deleteEvent };
-export { getCurrentEvent };
+const updateEvent = async (event) => {
+    const modifiedEvent = await axios.put(`${API_URL}/events/${event.id}`, event);
+    return modifiedEvent.data;
+};
+
+
+export {
+    createEvent,
+    deleteEvent,
+    updateEvent,
+    getCurrentEvent,
+
+};
 export default eventsData;
