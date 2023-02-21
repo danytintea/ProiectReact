@@ -21,6 +21,7 @@ export default function HomePage() {
                 className="site-layout"
                 style={{
                     marginLeft: 200,
+                    background:"red"
                 }}
             >
                 <Header style={{ padding: 0, background: colorBgContainer, height: 150 }} >

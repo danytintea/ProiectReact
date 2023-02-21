@@ -192,6 +192,10 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets + 1 });
     }
 
+    const deleteTicket = () => {
+        dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets - 1 });
+    }
+
     const selectSeats = () => {
         dispatch({ type: 'UPDATE_STEP', payload: 2 });
         navigate("/personalData");
@@ -245,6 +249,10 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'SET_ID_MODAL', payload: id });
     }
 
+    const chooseSeat=(value)=>{
+        dispatch({ type: 'UPDATE_SECTOR', payload: value });
+    }
+
 
     return <AppContext.Provider value={{
         user,
@@ -265,6 +273,7 @@ export default function AppProvider({ children }) {
         changeStep,
         rowSelection,
         addTicket,
+        deleteTicket,
         selectSeats,
         finishCreateEvent,
         deleteEventFunction,
@@ -272,5 +281,6 @@ export default function AppProvider({ children }) {
         openModal,
         cancelModal,
         setIdModal,
+        chooseSeat,
     }}>{children}</AppContext.Provider>
 }
