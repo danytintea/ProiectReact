@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3002';
 import axios from "axios";
 
 const sectorLoading = async (event_id, group_id) => {
