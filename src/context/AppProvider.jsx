@@ -6,7 +6,7 @@ import { message } from "antd";
 import { useNavigate } from "react-router";
 import eventsData, { createEvent, deleteEvent, getCurrentEvent, updateEvent } from "../api/eventsData";
 import groupsData, { getCurrentGroup } from "../api/groupsData";
-import sectorLoading from "../api/sectorLoading";
+import sectorLoading, { addSector, deleteSector, loadSectorsNewEvent } from "../api/sectorLoading";
 import EmptySector from "../components/EmptySector";
 
 const AppContext = createContext(initialState);
@@ -204,9 +204,21 @@ export default function AppProvider({ children }) {
     const finishCreateEvent = (value) => {
         createEvent(value)
             .then((newEvent) => {
+        
+                // groups.map((groupValue) => {
+                //      loadSectorsNewEvent(groupValue.sector_nr)
+                //          .then((sector) => {
+                //              var newSector=sector;
+                //              newSector.event_id=newEvent.data.id;
+                //              addSector(newSector).then(async ()=>{
+                //                 await new Promise(resolve => setTimeout(resolve, 50));
+                //                 })
+                //          })
+                // }
+                // )
 
-                message.success("Adaugarea a reușit!");
-                window.location.reload(false);
+             window.location.reload(false);
+
             })
 
     }
@@ -214,14 +226,17 @@ export default function AppProvider({ children }) {
     const deleteEventFunction = (id) => {
         deleteEvent(id)
             .then(() => {
+
+                deleteSector(id).then(async ()=>{ await new Promise(resolve => setTimeout(resolve, 50));})
+
                 window.location.reload(false);
                 message.success("Stergerea a reușit!");
             })
     }
 
     const updateEventFunction = (value) => {
-        const modifiedEvent={
-            id:idEventModal,
+        const modifiedEvent = {
+            id: idEventModal,
             ...value
             // name: value.name,
             // description: value.description,
@@ -245,11 +260,11 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_MODAL_STATE', payload: false });
     }
 
-    const setIdModal=(id)=>{
+    const setIdModal = (id) => {
         dispatch({ type: 'SET_ID_MODAL', payload: id });
     }
 
-    const chooseSeat=(value)=>{
+    const chooseSeat = (value) => {
         dispatch({ type: 'UPDATE_SECTOR', payload: value });
     }
 

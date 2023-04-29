@@ -6,9 +6,10 @@ import "./style.css"
 export default function Seats({ sector }) {
 
 
-    const { nr_tickets, addTicket, deleteTicket, group, selectSeats, chooseSeat } = useAppContext();
+    const { nr_tickets, addTicket, deleteTicket, group, selectSeats, chooseSeat, event } = useAppContext();
     const price = nr_tickets * 10;
     var sectorState = sector;
+    console.log(event);
 
     return (
         <div className="bgSeat">

@@ -28,7 +28,6 @@ const getCurrentEvent = async (id) => {
 }
 
 const createEvent = async (event) => {
-    console.log(event);
     const newEvent = await axios.post(`${API_URL}/events`, event);
     if (newEvent) {
         return newEvent;

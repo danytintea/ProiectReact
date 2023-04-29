@@ -21,12 +21,20 @@
   ],
   "events": [
     {
-      "id": "1",
-      "name": "meci1",
-      "description": "descriere meci 1",
+      "id": 1,
+      "name": "Dinamo - Buzau",
+      "description": "Sustine echipa de la distanta!",
       "price": "10",
-      "date": "01.01.2023",
-      "image": "https://www.bilete.ro/media/35206/bilete-dinamo-suntem-noi-poster-1.jpg"
+      "date": "2023-05-01",
+      "image": "https://scontent.fotp3-4.fna.fbcdn.net/v/t39.30808-6/343465552_1165188267506304_3394635781263652507_n.jpg?stp=dst-jpg_p526x296&_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=AncbxDYZAVkAX_Mr3oq&_nc_ht=scontent.fotp3-4.fna&oh=00_AfC8s_FYEIREiqQ-zobULWEMngEnqswRo2vunkUWnXQ1Mg&oe=6452A45D"
+    },
+    {
+      "id": 2,
+      "name": "Dinamo - Iasi",
+      "description": "Fiecare bilet conteaza!",
+      "price": "10",
+      "date": "2023-04-25",
+      "image": "https://scontent.fotp3-4.fna.fbcdn.net/v/t39.30808-6/342543912_903272614090734_1435452575608804587_n.jpg?stp=dst-jpg_p526x296&_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=zsDwkDZTwoIAX-NxlbJ&_nc_ht=scontent.fotp3-4.fna&oh=00_AfAULcjsrcXyuQZLiytMs9LOtLLRpE8NQndqS-Be3dIVTg&oe=6452A66C"
     }
   ],
   "groups": [
