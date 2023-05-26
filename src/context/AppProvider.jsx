@@ -117,7 +117,7 @@ export default function AppProvider({ children }) {
                 break;
             case '3'://info
                 {
-
+                    navigate("/info");
                 };
                 break;
             case '4'://contact
@@ -227,7 +227,7 @@ export default function AppProvider({ children }) {
         deleteEvent(id)
             .then(() => {
 
-                deleteSector(id).then(async ()=>{ await new Promise(resolve => setTimeout(resolve, 50));})
+                deleteSector(id).then();
 
                 window.location.reload(false);
                 message.success("Stergerea a reușit!");

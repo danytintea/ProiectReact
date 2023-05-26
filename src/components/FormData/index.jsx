@@ -49,6 +49,7 @@ export default function FormData() {
                     <Input placeholder="Introdu numarul de telefon" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                 </Form.Item>
                 <Typography.Title level={3}>Vei primi {nr_tickets} puncte</Typography.Title>
+                <Typography.Title level={3}>Aceste bilete nu ofera accesul pe stadion!</Typography.Title>
                 <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
                     Finalizeaza comanda
                 </Button>

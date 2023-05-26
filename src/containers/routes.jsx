@@ -6,6 +6,7 @@ import Tickets from "./Tickets";
 import PersonalData from "./PersonalData";
 import Contact from "./Contact";
 import ManageEvents from "./ManageEvents";
+import Info from "./InfoPage";
 
 export default [
     {
@@ -39,6 +40,10 @@ export default [
     {
         path: "/manageEvents",
         element: <ManageEvents />,
+    },
+    {
+        path: "/info",
+        element: <Info />,
     },
     {
         path: "*",

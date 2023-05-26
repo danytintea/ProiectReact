@@ -36,7 +36,7 @@ export default function TableGroups() {
     return (
         <div style={{
             display: 'block',
-            width: 700,
+            width: 500,
             padding: 30,
             alignContent: 'center',
         }}>
