@@ -6,7 +6,7 @@ import "./style.css";
 export default function FormData() {
 
     const [form] = Form.useForm();
-    const {logged, user, nr_tickets}=useAppContext();
+    const {logged, user, nr_tickets, sendTikets}=useAppContext();
 
     const [name, setName]=useState("");
     const [mail, setMail]=useState("");
@@ -23,7 +23,7 @@ export default function FormData() {
     return (
         <div className="loginBg">
             
-            <Form className="loginForm" form={form} onFinish={(value) => { console.log(value)}}>
+            <Form className="loginForm" form={form} onFinish={(value) => { sendTikets(value)}}>
                 <Typography.Title>Introdu datele</Typography.Title>
                 <Form.Item rules={[{
                     required: true,

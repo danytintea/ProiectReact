@@ -31,7 +31,7 @@ const addSector = async (sector) => {
     throw new Error("Eroare la adaugare!");
 };
 
-const detleteById= async(id)=>{
+const detleteSectorById= async(id)=>{
     const deleted =await axios.delete(`${API_URL}/sectors/${id}`);
     return deleted;
 }
@@ -40,10 +40,14 @@ const deleteSector= async(event)=>{
     const response = await axios.get(`${API_URL}/sectors`);
 
     const sector=response.data.filter(sector =>  sector.event_id==event).map((filtredSector)=>{
-        detleteById(filtredSector.id);
+        detleteSectorById(filtredSector.id);
     })
-  
 }
 
-export {loadSectorsNewEvent, addSector, deleteSector};
+const updateSector = async (sector) => {
+    const modifiedSector = await axios.put(`${API_URL}/sectors/${sector.id}`, sector);
+    return modifiedSector.data;
+};
+
+export {loadSectorsNewEvent, addSector, deleteSector, detleteSectorById, updateSector};
 export default sectorLoading;

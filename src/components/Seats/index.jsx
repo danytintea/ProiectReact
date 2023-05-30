@@ -9,7 +9,7 @@ export default function Seats({ sector }) {
     const { nr_tickets, addTicket, deleteTicket, group, selectSeats, chooseSeat, event } = useAppContext();
     const price = nr_tickets * 10;
     var sectorState = sector;
-    console.log(event);
+    
 
     return (
         <div className="bgSeat">
@@ -55,7 +55,7 @@ export default function Seats({ sector }) {
                 )}
 
             <Typography.Title level={2} className="headerText">Ai ales {nr_tickets} bilete ({price} lei)</Typography.Title>
-            <Button type="primary" onClick={selectSeats} size="large" style={{ background: "red" }}>
+            <Button type="primary" onClick={()=>{selectSeats(sectorState)}} size="large" style={{ background: "red" }}>
                 Rezerva
             </Button>
         </div>

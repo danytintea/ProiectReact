@@ -24,17 +24,9 @@
       "id": 1,
       "name": "Dinamo suntem noi",
       "description": "Fiecare bilet conteaza",
-      "price": "10",
+      "price": "20",
       "date": "2023-05-20",
       "image": "https://playtech.ro/stiri/wp-content/uploads/2022/04/Dinamo-isi-pierde-numele-A-primit-interzis-care-este-motivul.jpg"
-    },
-    {
-      "name": "Dinamo suntem noi",
-      "description": "Fiecare bilet conteaza",
-      "price": "10",
-      "date": "2023-05-27",
-      "image": "http://localhost:3000/static/media/doar-dinamo-bucuresti.c06c7c4a54b6f5667cc7.jpg",
-      "id": 2
     }
   ],
   "groups": [

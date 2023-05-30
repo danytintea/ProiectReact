@@ -6,7 +6,7 @@ import { message } from "antd";
 import { useNavigate } from "react-router";
 import eventsData, { createEvent, deleteEvent, getCurrentEvent, updateEvent } from "../api/eventsData";
 import groupsData, { getCurrentGroup } from "../api/groupsData";
-import sectorLoading, { addSector, deleteSector, loadSectorsNewEvent } from "../api/sectorLoading";
+import sectorLoading, { addSector, deleteSector, detleteSectorById, loadSectorsNewEvent, updateSector } from "../api/sectorsData";
 import EmptySector from "../components/EmptySector";
 
 const AppContext = createContext(initialState);
@@ -30,6 +30,7 @@ export default function AppProvider({ children }) {
         nr_tickets,
         isModalOpen,
         idEventModal,
+        sectorEdit,
         dispatch } = useAppReducer();
 
 
@@ -172,6 +173,7 @@ export default function AppProvider({ children }) {
         switch (value) {
             case 0:
                 {
+                    dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
                     navigate("/groups");
                 };
                 break;
@@ -196,7 +198,8 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets - 1 });
     }
 
-    const selectSeats = () => {
+    const selectSeats = (sectorState) => {
+        dispatch({ type: 'SET_SECTOR_EDIT', payload: sectorState });
         dispatch({ type: 'UPDATE_STEP', payload: 2 });
         navigate("/personalData");
     }
@@ -204,7 +207,7 @@ export default function AppProvider({ children }) {
     const finishCreateEvent = (value) => {
         createEvent(value)
             .then((newEvent) => {
-        
+
                 // groups.map((groupValue) => {
                 //      loadSectorsNewEvent(groupValue.sector_nr)
                 //          .then((sector) => {
@@ -217,7 +220,7 @@ export default function AppProvider({ children }) {
                 // }
                 // )
 
-             window.location.reload(false);
+                window.location.reload(false);
 
             })
 
@@ -227,7 +230,7 @@ export default function AppProvider({ children }) {
         deleteEvent(id)
             .then(() => {
 
-                deleteSector(id).then();
+                deleteSector(id).then(async () => { await new Promise(resolve => setTimeout(resolve, 50)); })
 
                 window.location.reload(false);
                 message.success("Stergerea a reușit!");
@@ -268,6 +271,22 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_SECTOR', payload: value });
     }
 
+    const sendTikets = (value) => {
+        let newSector = {
+            ...sectorEdit
+        }
+        newSector.seats.map((seat) => {
+            seat.seat_nr.map((vle) => {
+                    if (vle.stats_seat == "seat selected") {
+                        vle.stats_seat = "seat occupied";
+                    }
+            })
+        })
+
+        updateSector(newSector).then( message.success("Modificarea a reușit!"));
+        dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
+    }
+
 
     return <AppContext.Provider value={{
         user,
@@ -281,6 +300,7 @@ export default function AppProvider({ children }) {
         nr_tickets,
         isModalOpen,
         idEventModal,
+        sectorEdit,
         finishLogin,
         advanceAsGuest,
         manuOptions,
@@ -297,5 +317,6 @@ export default function AppProvider({ children }) {
         cancelModal,
         setIdModal,
         chooseSeat,
+        sendTikets,
     }}>{children}</AppContext.Provider>
 }

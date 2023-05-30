@@ -10,6 +10,11 @@ export const initialState = {
     nr_tickets: 0,
     isModalOpen: false,
     idEventModal: null,
+    sectorEdit: { 
+                event_id: null,
+                sector_id:null,
+                seats:{}
+                }
 };
 
 const reducer = (state, action) => {
@@ -36,6 +41,8 @@ const reducer = (state, action) => {
             return { ...state, isModalOpen: action.payload };
         case "SET_ID_MODAL":
             return { ...state, idEventModal: action.payload };
+        case "SET_SECTOR_EDIT":
+            return { ...state, sectorEdit: {...action.payload} };
         default:
             return { ...state };
     }
