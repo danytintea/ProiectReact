@@ -285,6 +285,7 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_SECTOR', payload: value });
     }
 
+    let secondsToGo;
     const sendTikets = (value) => {
     
             let newSector = {
@@ -302,7 +303,21 @@ export default function AppProvider({ children }) {
             updateSector(newSector).then(message.success("Modificarea a reușit!"));
             dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
             openModal();
+            secondsToGo = 5;
+            timeModal();
        
+    }
+
+    const timeModal=()=>{
+        const timer = setInterval(() => {
+            secondsToGo -= 1;
+        }, 1000);
+
+        setTimeout(() => {
+            clearInterval(timer);
+            cancelModal();
+            navigate("/home");
+        }, secondsToGo * 1000);
     }
 
 

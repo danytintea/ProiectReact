@@ -13,7 +13,7 @@ export default function PersonalData() {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    const {isModalOpen, cancelModal} = useAppContext();
+    const { isModalOpen, cancelModal } = useAppContext();
 
     return (
         <Layout hasSider>
@@ -44,18 +44,17 @@ export default function PersonalData() {
 
                         <Modal open={isModalOpen} onCancel={cancelModal}
                             footer={[
-                                <Button key="back" onClick={cancelModal}>
-                                    Renunta
-                                </Button>
+                                
                             ]}>
-                             <div className="formAddBg">
-                                <img 
+                            <div className="formAddBg">
+                                <img
                                     width={200}
                                     marginLeft="100"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Error.svg/1200px-Error.svg.png"
+                                    src="https://uploads.sitepoint.com/wp-content/uploads/2015/07/1436013803checkbox-1024x1024.jpg"
                                 />
-                                <Typography.Title>Nu ai selectat niciun bilet!</Typography.Title>
-                        </div>
+                                <Typography.Title>Achizitionare reusita!</Typography.Title>
+                            </div>
+                            <Typography.Title level={3}>Vei fi redirectionat spre pagina principala!</Typography.Title>
                         </Modal>
 
                     </div>

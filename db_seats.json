@@ -37744,7 +37744,7 @@
             },
             {
               "nr": 7,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 8,
@@ -41712,7 +41712,7 @@
             },
             {
               "nr": 18,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 19,
@@ -43132,7 +43132,7 @@
             },
             {
               "nr": 10,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 11,
@@ -46643,7 +46643,7 @@
             },
             {
               "nr": 13,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 14,
@@ -48496,11 +48496,11 @@
             },
             {
               "nr": 7,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 8,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 9,
@@ -50891,7 +50891,7 @@
             },
             {
               "nr": 9,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 10,
@@ -52679,7 +52679,7 @@
             },
             {
               "nr": 8,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 9,
