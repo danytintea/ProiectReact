@@ -35839,15 +35839,15 @@
           "seat_nr": [
             {
               "nr": 0,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 1,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 2,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 3,

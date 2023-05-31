@@ -1,14 +1,15 @@
 import { Button, Typography } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useAppContext } from "../../context";
 import "./style.css"
 
 export default function Seats({ sector }) {
 
 
-    const { nr_tickets, addTicket, deleteTicket, group, selectSeats, chooseSeat, event } = useAppContext();
-    const price = nr_tickets * 10;
+    const { group, selectSeats, chooseSeat, event } = useAppContext();
+    const price = event.price;
     var sectorState = sector;
+    const [tickets, setTikets] = useState(0);
     
 
     return (
@@ -40,12 +41,12 @@ export default function Seats({ sector }) {
                                 <div className={value.stats_seat} onClick={() => {
                                     if (value.stats_seat == "seat") {
                                         value.stats_seat = "seat selected";
-                                        addTicket();
+                                        setTikets(tickets+1);
                                     }
                                     else
                                         if (value.stats_seat == "seat selected") {
                                             value.stats_seat = "seat";
-                                            deleteTicket();
+                                            setTikets(tickets-1);
                                         }
                                     chooseSeat(sectorState);
                                 }}></div>
@@ -54,8 +55,8 @@ export default function Seats({ sector }) {
                     </div>
                 )}
 
-            <Typography.Title level={2} className="headerText">Ai ales {nr_tickets} bilete ({price} lei)</Typography.Title>
-            <Button type="primary" onClick={()=>{selectSeats(sectorState)}} size="large" style={{ background: "red" }}>
+            <Typography.Title level={2} className="headerText">Ai ales {tickets} bilete ({tickets*price} lei)</Typography.Title>
+            <Button type="primary" onClick={()=>{selectSeats(sectorState, tickets)}} size="large" style={{ background: "red" }}>
                 Rezerva
             </Button>
         </div>

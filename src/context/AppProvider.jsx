@@ -8,6 +8,7 @@ import eventsData, { createEvent, deleteEvent, getCurrentEvent, updateEvent } fr
 import groupsData, { getCurrentGroup } from "../api/groupsData";
 import sectorLoading, { addSector, deleteSector, detleteSectorById, loadSectorsNewEvent, updateSector } from "../api/sectorsData";
 import EmptySector from "../components/EmptySector";
+import { Modal } from 'antd';
 
 const AppContext = createContext(initialState);
 
@@ -52,6 +53,13 @@ export default function AppProvider({ children }) {
                 dispatch({ type: 'SET_EVENTS', payload: value });
             }
         )
+    }, []);
+
+    useEffect(() => {
+        const nr_tickets2=sessionStorage.getItem('nr_tikets');
+        if(nr_tickets2){
+            dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets2 });
+        }
     }, []);
 
     useEffect(() => {
@@ -198,10 +206,16 @@ export default function AppProvider({ children }) {
         dispatch({ type: 'UPDATE_NR_TICKETS', payload: nr_tickets - 1 });
     }
 
-    const selectSeats = (sectorState) => {
+    const selectSeats = (sectorState, tickets) => {
+        if (tickets == 0)
+        openModal();
+        else{
+        sessionStorage.setItem('nr_tikets', tickets);
+        dispatch({ type: 'UPDATE_NR_TICKETS', payload: tickets });
         dispatch({ type: 'SET_SECTOR_EDIT', payload: sectorState });
         dispatch({ type: 'UPDATE_STEP', payload: 2 });
         navigate("/personalData");
+        }
     }
 
     const finishCreateEvent = (value) => {
@@ -272,19 +286,23 @@ export default function AppProvider({ children }) {
     }
 
     const sendTikets = (value) => {
-        let newSector = {
-            ...sectorEdit
-        }
-        newSector.seats.map((seat) => {
-            seat.seat_nr.map((vle) => {
+    
+            let newSector = {
+                ...sectorEdit
+            }
+            newSector.seats.map((seat) => {
+                seat.seat_nr.map((vle) => {
                     if (vle.stats_seat == "seat selected") {
                         vle.stats_seat = "seat occupied";
                     }
+                })
             })
-        })
 
-        updateSector(newSector).then( message.success("Modificarea a reușit!"));
-        dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
+
+            updateSector(newSector).then(message.success("Modificarea a reușit!"));
+            dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
+            openModal();
+       
     }
 
 
