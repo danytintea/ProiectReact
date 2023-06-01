@@ -321,7 +321,7 @@ export default function AppProvider({ children }) {
 
     emailjs.init('mWCapowrS6-ueuAz2');
 
-    const sendEmail = (value) => {
+    const sendEmailContact = (value) => {
         const templateParams = {
             name: value.name,
             subject: value.subject,

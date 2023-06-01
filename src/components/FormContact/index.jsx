@@ -25,7 +25,7 @@ export default function FormContact() {
 
     return (
         <div className="loginBg">
-            <Form className="loginFormContact" form={form} onFinish={(value)=>{sendEmail(value)}}>
+            <Form className="loginFormContact" form={form} onFinish={(value)=>{sendEmailContact(value)}}>
                 <Typography.Title>Contact</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
