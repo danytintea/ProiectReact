@@ -8,7 +8,7 @@ import "./style.css";
 export default function FormContact() {
 
     const [form] = Form.useForm();
-    const { logged, user, sendEmail } = useAppContext();
+    const { logged, user, sendEmailContact } = useAppContext();
 
     const [mail, setMail] = useState("");
     const [name, setName] = useState("");

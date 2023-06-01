@@ -372,6 +372,6 @@ export default function AppProvider({ children }) {
         setIdModal,
         chooseSeat,
         sendTikets,
-        sendEmail,
+        sendEmailContact,
     }}>{children}</AppContext.Provider>
 }
