@@ -1,14 +1,17 @@
-import { Layout, theme, Typography } from "antd";
+import { Layout, theme, Typography, Modal } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import React from "react";
 import FooterPage from "../../components/FooterPage";
 import FormContact from "../../components/FormContact";
 import MenuPage from "../../components/MenuPage";
+import { useAppContext } from "../../context";
 
 export default function Contact(){
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+
+    const {isModalOpen, cancelModal}=useAppContext();
 
     return(
         <Layout hasSider>
@@ -37,6 +40,21 @@ export default function Contact(){
                         }}
                     >
                      <FormContact/> 
+
+                     <Modal open={isModalOpen} onCancel={cancelModal}
+                            footer={[
+                                
+                            ]}>
+                            <div className="formAddBg">
+                                <img
+                                    width={200}
+                                    marginLeft="100"
+                                    src="https://cdn-icons-png.flaticon.com/512/2343/2343605.png"
+                                />
+                                <Typography.Title>Mesajul a fost trimis!</Typography.Title>
+                            </div>
+                            <Typography.Title level={3}>Vei fi redirectionat spre pagina principala!</Typography.Title>
+                        </Modal>
                     </div>
                 </Content>
                 <FooterPage />

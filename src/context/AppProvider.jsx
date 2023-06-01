@@ -7,8 +7,7 @@ import { useNavigate } from "react-router";
 import eventsData, { createEvent, deleteEvent, getCurrentEvent, updateEvent } from "../api/eventsData";
 import groupsData, { getCurrentGroup } from "../api/groupsData";
 import sectorLoading, { addSector, deleteSector, detleteSectorById, loadSectorsNewEvent, updateSector } from "../api/sectorsData";
-import EmptySector from "../components/EmptySector";
-import { Modal } from 'antd';
+import emailjs from 'emailjs-com';
 
 const AppContext = createContext(initialState);
 
@@ -320,6 +319,28 @@ export default function AppProvider({ children }) {
         }, secondsToGo * 1000);
     }
 
+    emailjs.init('mWCapowrS6-ueuAz2');
+
+    const sendEmail = (value) => {
+        const templateParams = {
+            name: value.name,
+            subject: value.subject,
+            body: value.body,
+        };
+
+        emailjs.send('service_n0ammej', 'template_2griqom', templateParams)
+            .then((response) => {
+                console.log('Email sent successfully:', response.status, response.text);
+            })
+            .catch((error) => {
+                console.error('Failed to send email:', error);
+            });
+
+            openModal();
+            secondsToGo = 5;
+            timeModal();
+    };
+
 
     return <AppContext.Provider value={{
         user,
@@ -351,5 +372,6 @@ export default function AppProvider({ children }) {
         setIdModal,
         chooseSeat,
         sendTikets,
+        sendEmail,
     }}>{children}</AppContext.Provider>
 }

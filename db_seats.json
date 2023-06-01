@@ -40920,7 +40920,7 @@
             },
             {
               "nr": 13,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 14,
@@ -41372,7 +41372,7 @@
             },
             {
               "nr": 18,
-              "stats_seat": "seat"
+              "stats_seat": "seat occupied"
             },
             {
               "nr": 19,

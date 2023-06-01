@@ -3,12 +3,12 @@ import TextArea from "antd/es/input/TextArea";
 import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../../context";
 import "./style.css";
-import emailjs from '@emailjs/browser';
+
 
 export default function FormContact() {
 
     const [form] = Form.useForm();
-    const { logged, user} = useAppContext();
+    const { logged, user, sendEmail } = useAppContext();
 
     const [mail, setMail] = useState("");
     const [name, setName] = useState("");
@@ -22,29 +22,10 @@ export default function FormContact() {
         })
     }, [user]);
 
-    const ref = useRef();
-
-    const sendEmail = (e) => {
-        e.preventDefault();
-
-        emailjs.sendForm(
-            'service_kzego8i',
-            'template_2griqom',
-            ref.current,
-            'mWCapowrS6-ueuAz2'
-        )
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-
-            e.target.reset();
-    };
 
     return (
         <div className="loginBg">
-            <Form className="loginFormContact" form={form} ref={ref} onFinish={sendEmail}>
+            <Form className="loginFormContact" form={form} onFinish={(value)=>{sendEmail(value)}}>
                 <Typography.Title>Contact</Typography.Title>
                 <Form.Item rules={[{
                     required: true,
@@ -69,10 +50,10 @@ export default function FormContact() {
                     required: true,
                     message: "Descrie problema",
                 }]} name={'body'}>
-                    <TextArea placeholder="Descrie problema" rows={7} size="large" value={body} onChange={(e) => setBody(e.target.value)}/>
+                    <TextArea placeholder="Descrie problema" rows={7} size="large" value={body} onChange={(e) => setBody(e.target.value)} />
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit" block style={{ background: "red"}}>
+                <Button type="primary" htmlType="submit" block style={{ background: "red" }}>
                     Trimite mesajul
                 </Button>
             </Form>
