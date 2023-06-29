@@ -290,14 +290,40 @@ export default function AppProvider({ children }) {
             let newSector = {
                 ...sectorEdit
             }
+            let listTickets=[];
             newSector.seats.map((seat) => {
+                const row=seat.row+1;
                 seat.seat_nr.map((vle) => {
                     if (vle.stats_seat == "seat selected") {
+                        const nr=vle.nr+1;
+                        listTickets.push({row,nr});
                         vle.stats_seat = "seat occupied";
                     }
                 })
             })
 
+            const emailList = listTickets.map((ticket) => {
+                return `Randul: ${ticket.row}, Locul: ${ticket.nr};`;
+              }).join('\n');
+
+            const templateParams = {
+                name: value.name,
+                mail: value.username,
+                sector: group.name,
+                price: event.price,
+                event: event.name,
+                tickets: emailList
+            };
+
+            console.log(templateParams);
+    
+            emailjs.send('service_n0ammej', 'template_5peod5p', templateParams)
+                .then((response) => {
+                    console.log('Email sent successfully:', response.status, response.text);
+                })
+                .catch((error) => {
+                    console.error('Failed to send email:', error);
+                });
 
             updateSector(newSector).then(message.success("Modificarea a reușit!"));
             dispatch({ type: 'UPDATE_NR_TICKETS', payload: 0 });
