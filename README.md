@@ -4,6 +4,7 @@
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/24f6a9e7-2f1d-4df9-b92b-f93156ddf768)
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/099819ba-0d5b-4b03-acc9-1c8eafd08338)
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/a923df1b-bd8c-4b8a-a499-022f72025d74)
+![image](https://github.com/danytintea/ProiectReact/assets/73530803/026a6f96-1b8a-412f-b15c-2e0698466791)
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/b769f576-77ad-480e-b945-b23fc3a5a547)
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/eac19e2e-ef4e-4488-a11a-26d9cb892ca8)
 ![image](https://github.com/danytintea/ProiectReact/assets/73530803/6f2b0a82-6ec6-466d-a81b-f38d176881be)
